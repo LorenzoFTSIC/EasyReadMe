@@ -1,13 +1,67 @@
 // TODO: Include packages needed for this application
-
+const fs = require("fs");
+const inquirer = require("inquirer");
+const markDown = require("./generateMarkdown.js");
+// const path = require("path");
 // TODO: Create an array of questions for user input
-const questions = [];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function makeFile(answers) {
+    fs.writeFile("README.md", markDown(answers), (err) =>
+          err ? console.log(err) : console.log(`Success!`)
+        );
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          message: "What is the name of you poject?",
+          name: "title",
+        },
+        {
+          type: "input",
+          message:
+            "Ente a bief descrition.",
+          name: "description",
+        },
+        {
+          type: "input",
+          message: "What steps are needed for installation",
+          name: "installation",
+        },
+        {
+          type: "list",
+          message: "What usage/license are you using?",
+          choices: ["MIT", "Apache", "GPI", "None"],
+          name: "license",
+        },
+        {
+          type: "input",
+          message: "List tests you've produced for your app",
+          name: "tests",
+        },
+        {
+          type: "input",
+          message: "How can others contribute?",
+          name: "contribute",
+        },
+        {
+          type: "input",
+          message: "Link to you github profile:",
+          name: "github",
+        },
+        {
+          type: "input",
+          message: "Enter your email address:",
+          name: "email",
+        },
+      ])
 
-// Function call to initialize app
+      .then((answers) => {
+        makeFile(answers)
+      });
+  }
+
 init();
