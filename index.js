@@ -1,12 +1,12 @@
 // TODO: Include packages needed for this application
 const fs = require("fs");
 const inquirer = require("inquirer");
-const markDown = require("./generateMarkdown.js");
+const genMarkDown = require("./generateMarkdown.js");
 // const path = require("path");
 // TODO: Create an array of questions for user input
 
 function makeFile(answers) {
-    fs.writeFile("README.md", markDown(answers), (err) =>
+    fs.writeFile("README.md", genMarkDown(answers), (err) =>
           err ? console.log(err) : console.log(`Success!`)
         );
 }
@@ -24,7 +24,7 @@ function init() {
           type: "input",
           message:
             "Ente a bief descrition.",
-          name: "description",
+          name: "desc",
         },
         {
           type: "input",
@@ -34,7 +34,7 @@ function init() {
         {
           type: "list",
           message: "What usage/license are you using?",
-          choices: ["MIT", "Apache", "GPI", "None"],
+          choices: ["MIT", "GPI", "Apache", "none"],
           name: "license",
         },
         {
@@ -50,7 +50,7 @@ function init() {
         {
           type: "input",
           message: "Link to you github profile:",
-          name: "github",
+          name: "ghubProfile",
         },
         {
           type: "input",
