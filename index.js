@@ -17,13 +17,13 @@ function init() {
       .prompt([
         {
           type: "input",
-          message: "What is the name of you poject?",
+          message: "What is the name of you project?",
           name: "title",
         },
         {
           type: "input",
           message:
-            "Ente a bief descrition.",
+            "Ente a brief description.",
           name: "desc",
         },
         {
